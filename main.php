@@ -198,7 +198,7 @@ $userName = $resultRow['nm_name_user'] . $resultRow['nm_last_name_user'];
     </div>
   </div>
 
-  <script scr="js/main.js"></script>
+  <script src="js/main.js"></script>
   <!-- Bootstrap core JavaScript-->
   <script src="https://kit.fontawesome.com/ff0f4c191d.js" crossorigin="anonymous"></script>
   <script src="vendor/jquery/jquery.min.js"></script>
