@@ -33,7 +33,7 @@ $userName = $resultRow['nm_name_user'] . $resultRow['nm_last_name_user'];
   <link
     href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet">
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/bugs.css">
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.css" rel="stylesheet">
 
@@ -97,7 +97,7 @@ $userName = $resultRow['nm_name_user'] . $resultRow['nm_last_name_user'];
 
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar static-top shadow">
-
+        
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
@@ -151,16 +151,61 @@ $userName = $resultRow['nm_name_user'] . $resultRow['nm_last_name_user'];
           </ul>
 
         </nav>
+
+        
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
-
-
-
-
-
+          <div class="row">
+            <div class="col pt-3">
+              <a href="#" class="align-middle">project1</a> 
+              <a href="#" class="ml-4"></a>
+            </div>
+            <div class="col">
+              <button class="btn border border-primary text-primary float-right m-2 btn-primary-outline" type="button">Submit Bug</button>
+            </div>
+          </div>
+          <div class="row" id="content-bugs">
+            <div class="col">
+              <div class="card" id="card">
+                <div class="card-header">
+                  Open
+                </div>
+                <div class="m-2 h-100">
+                  <div class="card h-25 draggable"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card" id="card">
+                <div class="card-header">
+                  In progress
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card" id="card">
+                <div class="card-header">
+                  To be tested
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card" id="card">
+                <div class="card-header">
+                  Reopen
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card" id="card">
+                <div class="card-header">
+                  Closed
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <!-- /.container-fluid -->
 
@@ -198,7 +243,9 @@ $userName = $resultRow['nm_name_user'] . $resultRow['nm_last_name_user'];
     </div>
   </div>
 
-  <script src="js/main.js"></script>
+ 
+  <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
+  <script src="js/bugs.js"></script>
   <!-- Bootstrap core JavaScript-->
   <script src="https://kit.fontawesome.com/ff0f4c191d.js" crossorigin="anonymous"></script>
   <script src="vendor/jquery/jquery.min.js"></script>

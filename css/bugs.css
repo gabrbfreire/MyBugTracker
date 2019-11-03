@@ -1,0 +1,13 @@
+#card {
+  height: 80vh;
+  border: none;
+}
+
+.card-header {
+  padding: 0.6rem 1rem !important;
+}
+
+.draggable {
+  touch-action: none;
+  user-select: none;
+}
