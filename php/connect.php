@@ -4,4 +4,4 @@ $username = "root";
 $password = "root";
 $dbname = "bug_tracker";
 
-$conexao = mysqli_connect($servername, $username, $password, $dbname)or die("Error");
+$connection = mysqli_connect($servername, $username, $password, $dbname)or die("Error");

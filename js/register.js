@@ -4,7 +4,7 @@ function register(name, lastName, email, password, passwordRepeat) {
     if (this.readyState == 4 && this.status == 200) {
 
       if (this.responseText == "") {
-        window.location.href = 'index.html';
+        window.location.href = 'main.php';
       } else {
         document.getElementById("result").innerHTML = this.responseText;
       }
@@ -27,7 +27,7 @@ document.getElementById('register-form').addEventListener('submit', function () 
   if (password === passwordRepeat) {
     register(name, lastName, email, password, passwordRepeat);
   } else {
-    //password has to be equal to repeat
+    document.getElementById('result').innerHTML = "Passwords do not match";
   }
 
   event.preventDefault();

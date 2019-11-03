@@ -11,14 +11,14 @@ function login(name, password) {
 
     }
   };
-  xhttp.open("POST", "php/login.php?n=" + name + "&p=" + password, true);
+  xhttp.open("POST", "php/login.php?name=" + name + "&password=" + password, true);
   xhttp.send();
 }
 
 
-document.getElementById('submitL').addEventListener('submit', function () {
-  var name = document.getElementById('nameL').value;
-  var password = document.getElementById('passwordL').value;
+document.getElementById('login-form').addEventListener('submit', function () {
+  var name = document.getElementById('user-email').value;
+  var password = document.getElementById('user-password').value;
   login(name, password);
   event.preventDefault();
 });

@@ -3,20 +3,20 @@ session_start();
 //Conexão ao servidor
 include 'connect.php';
 
-$userEmail = filter_var($_REQUEST["n"], FILTER_SANITIZE_EMAIL);
-$userPassword = filter_var($_REQUEST["p"], FILTER_SANITIZE_STRING);
+$userEmail = filter_var($_REQUEST["name"], FILTER_SANITIZE_EMAIL);
+$userPassword = filter_var($_REQUEST["password"], FILTER_SANITIZE_STRING);
 
 //Chama procedure de Log In
-$sql = "CALL LogIn('$userEmail');";
+$sql = "CALL SelectUser('$userEmail');";
 $result = mysqli_query($connection, $sql)or die("Erro");
 $resultRow = mysqli_fetch_assoc($result);
 
 //Login  
-if($resultRow['em_usuario'] == $userEmail && password_verify($userPassword, $resultRow['pw_usuario']) == 1){
+if($resultRow['nm_email_user'] == $userEmail && password_verify($userPassword, $resultRow['pw_user']) == 1){
     $resultText = "";
-    $_SESSION['usuario'] = $userEmail;
+    $_SESSION['user'] = $userEmail;
 }else{
-    $resultText = "Usuário ou Senha inválidos";
+    $resultText = "Email or password not valid.";
 }
 mysqli_close($connection);
 
