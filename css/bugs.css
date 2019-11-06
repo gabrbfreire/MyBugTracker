@@ -16,3 +16,7 @@
 #accordionSidebar {
   z-index: 0;
 }
+
+.card-body {
+  padding: 1rem !important;
+}

@@ -1,10 +1,9 @@
 //Loads bugs from DB
-window.addEventListener("load", function() {
+window.addEventListener("load", function () {
   var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
+  xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      if (this.responseText == "") {
-      } else {
+      if (this.responseText == "") {} else {
         var bugsJson = JSON.parse(this.response);
         loadBugs(bugsJson);
       }
@@ -16,14 +15,12 @@ window.addEventListener("load", function() {
 
 function loadBugs(bugsJson) {
   for (var len in bugsJson) {
-    console.log(len);
 
     var id = "bugsJson." + len + ".id";
     var title = "bugsJson." + len + ".title";
     var desc = "bugsJson." + len + ".desc";
     var status = "bugsJson." + len + ".status";
 
-    console.log(eval(id), eval(title), eval(desc), typeof eval(status));
 
     var bugList = "";
 
@@ -64,22 +61,31 @@ function loadBugs(bugsJson) {
     cardText.setAttribute("class", "card-text");
     cardText.innerHTML = eval(desc);
     cardBody.appendChild(cardText);
+
+    var cardButtonDelete = document.createElement("button");
+    cardButtonDelete.setAttribute("class", "btn btn-primary-outline float-right p-0");
+    cardButtonDelete.innerHTML = 'X';
+    cardTitle.appendChild(cardButtonDelete);
+
+    var cardButtonAlter = document.createElement("button");
+    cardButtonAlter.setAttribute("class", "btn btn-primary-outline float-right p-0");
+    cardButtonAlter.innerHTML = '...';
+    cardBody.appendChild(cardButtonAlter);
   }
 }
 
 //Inserts new bug in DB
-document.getElementById("new-bug-form").addEventListener("submit", function() {
+document.getElementById("new-bug-form").addEventListener("submit", function () {
   var bugTitle = document.getElementById("bug-title").value;
   var bugDesc = document.getElementById("bug-desc").value;
   var projectId = 1; //PLACEHOLDER////////////////////////////////////////
-  console.log(bugTitle, bugDesc, projectId);
   submitNewBug(bugTitle, bugDesc, projectId);
   event.preventDefault();
 });
 
 function submitNewBug(bugTitle, bugDesc, projectId) {
   var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
+  xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       if (this.responseText == "") {
         window.location.href = "bugs.php";
@@ -91,11 +97,11 @@ function submitNewBug(bugTitle, bugDesc, projectId) {
   xhttp.open(
     "POST",
     "php/submit-bug.php?bugTitle=" +
-      bugTitle +
-      "&bugDesc=" +
-      bugDesc +
-      "&projectId=" +
-      projectId,
+    bugTitle +
+    "&bugDesc=" +
+    bugDesc +
+    "&projectId=" +
+    projectId,
     true
   );
   xhttp.send();

@@ -1,9 +1,9 @@
 <?php
-  session_start();
-  if (!isset($_SESSION['user'])) {
-    header('Location: index.html');
-    exit();
-  }
+session_start();
+if (!isset($_SESSION['user'])) {
+  header('Location: index.html');
+  exit();
+}
 
 include 'php/connect.php';
 $user = $_SESSION['user'];
@@ -54,7 +54,6 @@ mysqli_close($connection);
         <div class="sidebar-brand-icon rotate-15">
           <i class="fas fa-bug"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">MyBugTracker</div>
       </a>
 
       <!-- Divider -->
