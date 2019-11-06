@@ -1,47 +1,43 @@
-// target elements with the "draggable" class
-interact('.draggable')
-  .draggable({
-    // enable inertial throwing
-    inertia: true,
-    // keep the element within the area of it's parent
-    modifiers: [
-      interact.modifiers.restrictRect({
-        restriction: 'parent',
-        endOnly: true
-      })
-    ],
-    // enable autoScroll
-    autoScroll: true,
+window.addEventListener('load', function () {
+  //load bugs
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
 
-    // call this function on every dragmove event
-    onmove: dragMoveListener,
-    // call this function on every dragend event
-    onend: function (event) {
-      var textEl = event.target.querySelector('p')
+      if (this.responseText == "") {
 
-      textEl && (textEl.textContent =
-        'moved a distance of ' +
-        (Math.sqrt(Math.pow(event.pageX - event.x0, 2) +
-          Math.pow(event.pageY - event.y0, 2) | 0))
-        .toFixed(2) + 'px')
+      } else {
+        console.log(JSON.parse(this.response));
+      }
     }
-  })
+  };
+  xhttp.open("POST", "php/select-bugs.php", true);
+  xhttp.send();
+});
 
-function dragMoveListener(event) {
-  var target = event.target
-  // keep the dragged position in the data-x/data-y attributes
-  var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
-  var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy
 
-  // translate the element
-  target.style.webkitTransform =
-    target.style.transform =
-    'translate(' + x + 'px, ' + y + 'px)'
+document.getElementById('new-bug-form').addEventListener('submit', function () {
+  var bugTitle = document.getElementById('bug-title').value;
+  var bugDesc = document.getElementById('bug-desc').value;
+  var projectId = 1; //PLACEHOLDER////////////////////////////////////////
+  console.log(bugTitle, bugDesc, projectId);
+  submitNewBug(bugTitle, bugDesc, projectId);
+  event.preventDefault();
+});
 
-  // update the posiion attributes
-  target.setAttribute('data-x', x)
-  target.setAttribute('data-y', y)
+function submitNewBug(bugTitle, bugDesc, projectId) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+
+      if (this.responseText == "") {
+        window.location.href = 'bugs.php';
+      } else {
+        document.getElementById("result").innerHTML = this.responseText;
+      }
+
+    }
+  };
+  xhttp.open("POST", "php/submit-bug.php?bugTitle=" + bugTitle + "&bugDesc=" + bugDesc + "&projectId=" + projectId, true);
+  xhttp.send();
 }
-
-// this is used later in the resizing and gesture demos
-window.dragMoveListener = dragMoveListener

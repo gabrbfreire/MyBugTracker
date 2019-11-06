@@ -1,6 +1,6 @@
 <?php
 session_start();
-//Conexão ao servidor
+//Server connection
 include 'connect.php';
 
 $userName = filter_var($_REQUEST["name"], FILTER_SANITIZE_STRING);

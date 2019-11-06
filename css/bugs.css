@@ -10,4 +10,9 @@
 .draggable {
   touch-action: none;
   user-select: none;
+  z-index: 100;
+}
+
+#accordionSidebar {
+  z-index: 0;
 }

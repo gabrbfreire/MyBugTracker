@@ -1,3 +1,11 @@
+document.getElementById('login-form').addEventListener('submit', function () {
+  var name = document.getElementById('user-email').value;
+  var password = document.getElementById('user-password').value;
+  login(name, password);
+  event.preventDefault();
+});
+
+
 function login(name, password) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
@@ -14,11 +22,3 @@ function login(name, password) {
   xhttp.open("POST", "php/login.php?name=" + name + "&password=" + password, true);
   xhttp.send();
 }
-
-
-document.getElementById('login-form').addEventListener('submit', function () {
-  var name = document.getElementById('user-email').value;
-  var password = document.getElementById('user-password').value;
-  login(name, password);
-  event.preventDefault();
-});

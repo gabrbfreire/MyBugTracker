@@ -13,6 +13,7 @@ $result = mysqli_query($connection, $sql)or die("Erro");
 $resultRow = mysqli_fetch_assoc($result);
 
 $userName = $resultRow['nm_name_user'] . $resultRow['nm_last_name_user'];
+mysqli_close($connection);
 ?>
 
 <!DOCTYPE html>
@@ -40,9 +41,10 @@ $userName = $resultRow['nm_name_user'] . $resultRow['nm_last_name_user'];
 </head>
 
 <body id="page-top">
-
   <!-- Page Wrapper -->
   <div id="wrapper">
+
+
 
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
@@ -160,10 +162,12 @@ $userName = $resultRow['nm_name_user'] . $resultRow['nm_last_name_user'];
           <div class="row">
             <div class="col pt-3">
               <a href="#" class="align-middle">project1</a> 
-              <a href="#" class="ml-4"></a>
+              <a href="#" class="ml-4">project2</a>
             </div>
             <div class="col">
-              <button class="btn border border-primary text-primary float-right m-2 btn-primary-outline" type="button">Submit Bug</button>
+              <button type="button" class="btn border border-primary text-primary float-right m-2 btn-primary-outline" data-toggle="modal" data-target="#newBugModal">
+                Submit Bug
+              </button>
             </div>
           </div>
           <div class="row" id="content-bugs">
@@ -173,7 +177,9 @@ $userName = $resultRow['nm_name_user'] . $resultRow['nm_last_name_user'];
                   Open
                 </div>
                 <div class="m-2 h-100">
-                  <div class="card h-25 draggable"></div>
+                  <div class="list-group"></div>
+                    <div class="card h-25"></div>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -181,6 +187,9 @@ $userName = $resultRow['nm_name_user'] . $resultRow['nm_last_name_user'];
               <div class="card" id="card">
                 <div class="card-header">
                   In progress
+                </div>
+                <div class="m-2 h-100">
+                  <div class="card h-25"></div>
                 </div>
               </div>
             </div>
@@ -222,14 +231,44 @@ $userName = $resultRow['nm_name_user'] . $resultRow['nm_last_name_user'];
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
+  
+  <!-- Submit Modal -->
+  <div class="modal fade" id="newBugModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New Bug</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="" id="new-bug-form">
+            <div class="form-group">
+              <label for="bug-title">Bug title:</label>
+              <input type="text" class="form-control" id="bug-title" required>
+            </div>
+            <div class="form-group">
+              <label for="bug-desc">Bug description:</label>
+              <input type="text" class="form-control" id="bug-desc" required>
+            </div>
+        </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModal"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <h5 class="modal-title" id="logoutModal">Ready to Leave?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
@@ -243,8 +282,7 @@ $userName = $resultRow['nm_name_user'] . $resultRow['nm_last_name_user'];
     </div>
   </div>
 
- 
-  <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
+
   <script src="js/bugs.js"></script>
   <!-- Bootstrap core JavaScript-->
   <script src="https://kit.fontawesome.com/ff0f4c191d.js" crossorigin="anonymous"></script>
