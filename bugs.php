@@ -176,10 +176,7 @@ mysqli_close($connection);
                 <div class="card-header">
                   Open
                 </div>
-                <div class="m-2 h-100">
-                  <div class="list-group"></div>
-                    <div class="card h-25"></div>
-                  </ul>
+                <div class="m-2 h-100" id="bug-list-open">
                 </div>
               </div>
             </div>
@@ -188,8 +185,8 @@ mysqli_close($connection);
                 <div class="card-header">
                   In progress
                 </div>
-                <div class="m-2 h-100">
-                  <div class="card h-25"></div>
+                <div class="m-2 h-100" id="bug-list-in-progress">
+                  
                 </div>
               </div>
             </div>
@@ -198,6 +195,9 @@ mysqli_close($connection);
                 <div class="card-header">
                   To be tested
                 </div>
+                <div class="m-2 h-100" id="bug-list-tested">
+                  
+                </div>
               </div>
             </div>
             <div class="col">
@@ -205,12 +205,18 @@ mysqli_close($connection);
                 <div class="card-header">
                   Reopen
                 </div>
+                <div class="m-2 h-100" id="bug-list-reopen">
+                  
+                </div>
               </div>
             </div>
             <div class="col">
               <div class="card" id="card">
                 <div class="card-header">
                   Closed
+                </div>
+                <div class="m-2 h-100" id="bug-list-closed">
+                  
                 </div>
               </div>
             </div>
@@ -253,11 +259,11 @@ mysqli_close($connection);
               <input type="text" class="form-control" id="bug-desc" required>
             </div>
         </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button class="btn btn-primary">Submit</button>
-          </div>
-        </form>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button class="btn btn-primary">Submit</button>
+            </div>
+          </form>
       </div>
     </div>
   </div>

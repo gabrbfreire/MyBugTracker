@@ -18,6 +18,7 @@ echo '{';
             echo '"bug'.$num.'":{"id":"'.$resultRow['id_bug'].'",
                   "title":"'.$resultRow['nm_bug'].'", 
                   "desc":"'.$resultRow['nm_bugDesc'].'",
+                  "status":"'.$resultRow['nm_status'].'",
                   "project":"'.$resultRow['projects_id_project'].'"}';
             if($i != $rows-1){
                 echo ',';
