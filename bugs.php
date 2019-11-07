@@ -176,6 +176,7 @@ mysqli_close($connection);
                   Open
                 </div>
                 <div class="m-2 h-100" id="bug-list-open">
+
                 </div>
               </div>
             </div>
@@ -250,6 +251,7 @@ mysqli_close($connection);
         <div class="modal-body">
           <form action="" id="new-bug-form">
             <div class="form-group">
+              <div id="result"></div>
               <label for="bug-title">Bug title:</label>
               <input type="text" class="form-control" id="bug-title" required>
             </div>
@@ -287,8 +289,9 @@ mysqli_close($connection);
     </div>
   </div>
 
-
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
   <script src="js/bugs.js"></script>
+  <script src="js/bugsSortable.js"></script>
   <!-- Bootstrap core JavaScript-->
   <script src="https://kit.fontawesome.com/ff0f4c191d.js" crossorigin="anonymous"></script>
   <script src="vendor/jquery/jquery.min.js"></script>

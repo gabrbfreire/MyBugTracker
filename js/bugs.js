@@ -1,10 +1,9 @@
 //Loads bugs from DB
-window.addEventListener("load", function() {
+window.addEventListener("load", function () {
   var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
+  xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      if (this.responseText == "") {
-      } else {
+      if (this.responseText == "") {} else {
         var bugsJson = JSON.parse(this.response);
         loadBugs(bugsJson);
       }
@@ -51,6 +50,7 @@ function loadBugs(bugsJson) {
 function createCard(id, title, desc, bugList, bugsJson) {
   var card = document.createElement("div");
   card.setAttribute("class", "card h-25 mb-1");
+  card.setAttribute("id", eval(id));
   document.getElementById(bugList).appendChild(card);
 
   var cardBody = document.createElement("div");
@@ -63,7 +63,7 @@ function createCard(id, title, desc, bugList, bugsJson) {
   cardBody.appendChild(cardTitle);
 
   var cardText = document.createElement("p");
-  cardText.setAttribute("class", "card-text");
+  cardText.setAttribute("class", "card-text m-0");
   cardText.innerHTML = eval(desc);
   cardBody.appendChild(cardText);
 
@@ -84,8 +84,10 @@ function createCard(id, title, desc, bugList, bugsJson) {
   cardBody.appendChild(cardButtonAlter);
 }
 
+
+
 //Inserts new bug in DB
-document.getElementById("new-bug-form").addEventListener("submit", function() {
+document.getElementById("new-bug-form").addEventListener("submit", function () {
   var bugTitle = document.getElementById("bug-title").value;
   var bugDesc = document.getElementById("bug-desc").value;
   var projectId = 1; //PLACEHOLDER////////////////////////////////////////
@@ -95,7 +97,7 @@ document.getElementById("new-bug-form").addEventListener("submit", function() {
 
 function submitNewBug(bugTitle, bugDesc, projectId) {
   var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
+  xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       if (this.responseText == "") {
         window.location.href = "bugs.php";
@@ -107,11 +109,11 @@ function submitNewBug(bugTitle, bugDesc, projectId) {
   xhttp.open(
     "POST",
     "php/submit-bug.php?bugTitle=" +
-      bugTitle +
-      "&bugDesc=" +
-      bugDesc +
-      "&projectId=" +
-      projectId,
+    bugTitle +
+    "&bugDesc=" +
+    bugDesc +
+    "&projectId=" +
+    projectId,
     true
   );
   xhttp.send();
