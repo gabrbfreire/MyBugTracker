@@ -9,7 +9,8 @@ var sortable = Sortable.create(open, {
   onEnd: function (evt) {
     console.log(evt.newIndex);
     changeIndex(evt.clone.id, evt.newIndex);
-  }
+  },
+  animation: 150
 });
 
 var inProgress = document.getElementById('bug-list-in-progress');
@@ -21,7 +22,8 @@ var sortable = Sortable.create(inProgress, {
   onEnd: function (evt) {
     console.log(evt.newIndex);
     changeIndex(evt.clone.id, evt.newIndex);
-  }
+  },
+  animation: 150
 });
 
 var tested = document.getElementById('bug-list-tested');
@@ -33,7 +35,8 @@ var sortable = Sortable.create(tested, {
   onEnd: function (evt) {
     console.log(evt.newIndex);
     changeIndex(evt.clone.id, evt.newIndex);
-  }
+  },
+  animation: 150
 });
 
 var reopen = document.getElementById('bug-list-reopen');
@@ -45,7 +48,8 @@ var sortable = Sortable.create(reopen, {
   onEnd: function (evt) {
     console.log(evt.newIndex);
     changeIndex(evt.clone.id, evt.newIndex);
-  }
+  },
+  animation: 150
 });
 
 var closd = document.getElementById('bug-list-closed');
@@ -57,7 +61,8 @@ var sortable = Sortable.create(closd, {
   onEnd: function (evt) {
     console.log(evt.newIndex);
     changeIndex(evt.clone.id, evt.newIndex);
-  }
+  },
+  animation: 150
 });
 
 

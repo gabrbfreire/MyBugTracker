@@ -1,3 +1,6 @@
+var updateId = 0;
+
+//SELECT
 //Loads bugs from DB
 window.addEventListener("load", function () {
   var xhttp = new XMLHttpRequest();
@@ -12,6 +15,8 @@ window.addEventListener("load", function () {
   xhttp.open("POST", "php/select-bugs.php", true);
   xhttp.send();
 });
+
+
 
 function loadBugs(bugsJson) {
   for (var len in bugsJson) {
@@ -46,6 +51,9 @@ function loadBugs(bugsJson) {
   }
 }
 
+
+
+
 //Creates cards for bugs
 function createCard(id, title, desc, bugList, bugsJson) {
   var card = document.createElement("div");
@@ -63,7 +71,7 @@ function createCard(id, title, desc, bugList, bugsJson) {
   cardBody.appendChild(cardTitle);
 
   var cardText = document.createElement("p");
-  cardText.setAttribute("class", "card-text m-0");
+  cardText.setAttribute("class", "card-text m-0 mw-1");
   cardText.innerHTML = eval(desc);
   cardBody.appendChild(cardText);
 
@@ -72,20 +80,42 @@ function createCard(id, title, desc, bugList, bugsJson) {
     "class",
     "btn btn-primary-outline float-right p-0"
   );
+  cardButtonDelete.setAttribute("id", eval(id) + "-delete");
   cardButtonDelete.innerHTML = "X";
   cardTitle.appendChild(cardButtonDelete);
+
+  //Deletes when x is clicked
+  document
+    .getElementById(eval(id) + "-delete")
+    .addEventListener("click", function () {
+      console.log(this.id.split("-")[0]); //Get id number before "-"
+      deleteBug(this.id.split("-")[0]);
+    });
 
   var cardButtonAlter = document.createElement("button");
   cardButtonAlter.setAttribute(
     "class",
     "btn btn-primary-outline float-right p-0"
   );
+  cardButtonAlter.setAttribute("id", eval(id) + "-update");
+  cardButtonAlter.setAttribute("data-toggle", "modal");
+  cardButtonAlter.setAttribute("data-target", "#updateBugModal");
+  //data-toggle="modal" data-target="#updateBugModal"
   cardButtonAlter.innerHTML = "...";
   cardBody.appendChild(cardButtonAlter);
+
+  //when "update" is clicked
+  document.getElementById(eval(id) + "-update").addEventListener("click", function () {
+    updateId = this.id.split("-")[0]; //Get id number before "-"
+    document.getElementById("bug-title-update").value = eval(title);
+    document.getElementById("bug-desc-update").value = eval(desc);
+  });
 }
 
 
 
+
+//INSERT
 //Inserts new bug in DB
 document.getElementById("new-bug-form").addEventListener("submit", function () {
   var bugTitle = document.getElementById("bug-title").value;
@@ -116,5 +146,49 @@ function submitNewBug(bugTitle, bugDesc, projectId) {
     projectId,
     true
   );
+  xhttp.send();
+}
+
+
+
+//DELETE
+function deleteBug(id) {
+  console.log(id);
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      if (this.responseText == "") {
+        window.location.href = "bugs.php";
+      } else {
+        document.getElementById("result").innerHTML = this.responseText;
+      }
+    }
+  };
+  xhttp.open("POST", "php/delete-bug.php?id=" + id);
+  xhttp.send();
+}
+
+
+
+//UPDATE
+document.getElementById("update-bug-form").addEventListener("submit", function () {
+  console.log(document.getElementById("bug-title-update").value);
+  var title = document.getElementById("bug-title-update").value
+  var desc = document.getElementById("bug-desc-update").value
+  updateBug(updateId, title, desc);
+  event.preventDefault();
+});
+
+
+function updateBug(id, title, desc) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      if (this.responseText == "") {
+        window.location.href = "bugs.php";
+      }
+    }
+  };
+  xhttp.open("POST", "php/update-bug.php?bugId=" + id + "&bugTitle=" + title + "&bugDesc=" + desc, true);
   xhttp.send();
 }

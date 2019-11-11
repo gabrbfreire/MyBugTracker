@@ -253,11 +253,42 @@ mysqli_close($connection);
             <div class="form-group">
               <div id="result"></div>
               <label for="bug-title">Bug title:</label>
-              <input type="text" class="form-control" id="bug-title" required>
+              <input type="text" class="form-control" id="bug-title" maxlength="10" required>
             </div>
             <div class="form-group">
               <label for="bug-desc">Bug description:</label>
-              <input type="text" class="form-control" id="bug-desc" required>
+              <input type="text" class="form-control" id="bug-desc" maxlength="50" >
+            </div>
+        </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Update Modal -->
+  <div class="modal fade" id="updateBugModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update Bug</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="" id="update-bug-form">
+            <div class="form-group">
+              <div id="result"></div>
+              <label for="bug-title">Bug title:</label>
+              <input type="text" class="form-control" id="bug-title-update" maxlength="20" required>
+            </div>
+            <div class="form-group">
+              <label for="bug-desc">Bug description:</label>
+              <input type="text" class="form-control" id="bug-desc-update" maxlength="50" >
             </div>
         </div>
             <div class="modal-footer">

@@ -20,3 +20,11 @@
 .card-body {
   padding: 1rem !important;
 }
+
+.card-title {
+  font-size: .8rem;
+}
+
+.card-text {
+  font-size: .7rem;
+}
