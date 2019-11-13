@@ -159,9 +159,8 @@ mysqli_close($connection);
         <!-- Begin Page Content -->
         <div class="container-fluid">
           <div class="row">
-            <div class="col pt-3">
-              <a href="#" class="align-middle">project1</a> 
-              <a href="#" class="ml-4">project2</a>
+            <div class="col pt-3" id="projects-col">
+
             </div>
             <div class="col">
               <button type="button" class="btn border border-primary text-primary float-right m-2 btn-primary-outline" data-toggle="modal" data-target="#newBugModal">

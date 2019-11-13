@@ -1,12 +1,22 @@
 var updateId = 0;
+var team;
+
 
 //SELECT
 //Loads bugs from DB
 window.addEventListener("load", function () {
+  createBugs();
+  loadProjects();
+});
+
+
+
+
+function createBugs() {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      if (this.responseText == "") {} else {
+      if (this.responseText == "") { } else {
         var bugsJson = JSON.parse(this.response);
         loadBugs(bugsJson);
       }
@@ -14,9 +24,7 @@ window.addEventListener("load", function () {
   };
   xhttp.open("POST", "php/select-bugs.php", true);
   xhttp.send();
-});
-
-
+}
 
 function loadBugs(bugsJson) {
   for (var len in bugsJson) {
@@ -51,13 +59,10 @@ function loadBugs(bugsJson) {
   }
 }
 
-
-
-
 //Creates cards for bugs
 function createCard(id, title, desc, bugList, bugsJson) {
   var card = document.createElement("div");
-  card.setAttribute("class", "card h-25 mb-1");
+  card.setAttribute("class", "card mb-1");
   card.setAttribute("id", eval(id));
   document.getElementById(bugList).appendChild(card);
 
@@ -110,6 +115,39 @@ function createCard(id, title, desc, bugList, bugsJson) {
     document.getElementById("bug-title-update").value = eval(title);
     document.getElementById("bug-desc-update").value = eval(desc);
   });
+}
+
+
+
+
+//Loads project anchors
+function loadProjects() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      if (this.responseText == "") { } else {
+        var projectsJson = JSON.parse(this.response);
+        createProjectsAnchors(projectsJson);
+      }
+    }
+  };
+  xhttp.open("POST", "php/select-projects.php", true);
+  xhttp.send();
+}
+
+function createProjectsAnchors(projectsJson) {
+  for (var len in projectsJson) {
+    var id = "projectsJson." + len + ".id";
+    var title = "projectsJson." + len + ".title";
+    var team = "projectsJson." + len + ".team";
+
+    var projectAnchor = document.createElement("a");
+    projectAnchor.setAttribute("class", "align-middle");
+    projectAnchor.setAttribute("id", eval(id) + "-project");
+    projectAnchor.setAttribute("href", "#");
+    projectAnchor.innerHTML = eval(title);
+    document.getElementById("projects-col").appendChild(projectAnchor);
+  }
 }
 
 
@@ -190,5 +228,25 @@ function updateBug(id, title, desc) {
     }
   };
   xhttp.open("POST", "php/update-bug.php?bugId=" + id + "&bugTitle=" + title + "&bugDesc=" + desc, true);
+  xhttp.send();
+}
+
+
+
+//LOGOUT
+document.getElementById('logout-button').addEventListener('click', logout);
+console.log('a');
+
+function logout() {
+  console.log('a');
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      if (this.responseText == "") {
+        window.location.href = 'index.html';
+      }
+    }
+  };
+  xhttp.open("POST", "php/logout.php", true);
   xhttp.send();
 }
