@@ -1,11 +1,10 @@
 var updateId = 0;
 var team;
-
+var projectId = 0;
 
 //SELECT
 //Loads bugs from DB
 window.addEventListener("load", function () {
-  createBugs();
   loadProjects();
 });
 
@@ -22,7 +21,7 @@ function createBugs() {
       }
     }
   };
-  xhttp.open("POST", "php/select-bugs.php", true);
+  xhttp.open("POST", "php/select-bugs.php?projectId=" + projectId, true);
   xhttp.send();
 }
 
@@ -128,6 +127,7 @@ function loadProjects() {
       if (this.responseText == "") { } else {
         var projectsJson = JSON.parse(this.response);
         createProjectsAnchors(projectsJson);
+
       }
     }
   };
@@ -136,10 +136,12 @@ function loadProjects() {
 }
 
 function createProjectsAnchors(projectsJson) {
+  var projects = [];
   for (var len in projectsJson) {
     var id = "projectsJson." + len + ".id";
     var title = "projectsJson." + len + ".title";
     var team = "projectsJson." + len + ".team";
+    projects.push(eval(id));
 
     var projectAnchor = document.createElement("a");
     projectAnchor.setAttribute("class", "align-middle");
@@ -147,9 +149,22 @@ function createProjectsAnchors(projectsJson) {
     projectAnchor.setAttribute("href", "#");
     projectAnchor.innerHTML = eval(title);
     document.getElementById("projects-col").appendChild(projectAnchor);
+
+    document.getElementById(eval(id) + "-project").addEventListener('click', function () {
+      if (projectId != this.id.split("-")[0]) {
+        projectId = this.id.split("-")[0];
+        createBugs();
+      }
+    });
   }
+  clickFirstAnchor(projects);
 }
 
+function clickFirstAnchor(projects) {
+  console.log(projects);
+  projectId = Math.min(projects);
+  createBugs();
+}
 
 
 
@@ -158,7 +173,6 @@ function createProjectsAnchors(projectsJson) {
 document.getElementById("new-bug-form").addEventListener("submit", function () {
   var bugTitle = document.getElementById("bug-title").value;
   var bugDesc = document.getElementById("bug-desc").value;
-  var projectId = 1; //PLACEHOLDER////////////////////////////////////////
   submitNewBug(bugTitle, bugDesc, projectId);
   event.preventDefault();
 });

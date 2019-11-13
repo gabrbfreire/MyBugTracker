@@ -3,7 +3,9 @@ session_start();
 //Server connection
 include 'connect.php';
 
-$sql = "CALL SelectBugs();";
+$projectId = $_REQUEST['projectId'];
+
+$sql = "CALL SelectBugs($projectId);";
 $result = mysqli_query($connection, $sql)or die("Error");
 
 $i = 0;

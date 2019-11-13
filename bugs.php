@@ -12,7 +12,7 @@ $sql = "CALL SelectUser('$user');";
 $result = mysqli_query($connection, $sql)or die("Erro");
 $resultRow = mysqli_fetch_assoc($result);
 
-$userName = $resultRow['nm_name_user'] . $resultRow['nm_last_name_user'];
+$userName = $resultRow['nm_name_user'] .' '. $resultRow['nm_last_name_user'];
 mysqli_close($connection);
 ?>
 
@@ -105,21 +105,13 @@ mysqli_close($connection);
           </button>
 
           <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form>
+          <button class="btn btn-primary mr-auto" data-toggle="modal" data-target="#projectModal">
+                  New project
+          </button>
 
           <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto">
-
+          <ul class="navbar-nav">
+            
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
@@ -315,6 +307,33 @@ mysqli_close($connection);
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
           <button class="btn btn-primary" id="logout-button">Logout</button>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project Modal -->
+  <div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add project</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="" id="add-project-form">
+            <div class="form-group">
+              <div id="result"></div>
+              <label for="bug-title">Project name:</label>
+              <input type="text" class="form-control" id="project-name" maxlength="20" required>
+            </div>
+        </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button class="btn btn-primary">Submit</button>
+            </div>
+          </form>
       </div>
     </div>
   </div>
