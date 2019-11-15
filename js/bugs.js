@@ -61,7 +61,7 @@ function loadBugs(bugsJson) {
 //Creates cards for bugs
 function createCard(id, title, desc, bugList, bugsJson) {
   var card = document.createElement("div");
-  card.setAttribute("class", "card mb-1");
+  card.setAttribute("class", "card mb-1 bug-card");
   card.setAttribute("id", eval(id));
   document.getElementById(bugList).appendChild(card);
 
@@ -144,15 +144,17 @@ function createProjectsAnchors(projectsJson) {
     projects.push(eval(id));
 
     var projectAnchor = document.createElement("a");
-    projectAnchor.setAttribute("class", "align-middle");
+    projectAnchor.setAttribute("class", "align-middle mr-5");
     projectAnchor.setAttribute("id", eval(id) + "-project");
     projectAnchor.setAttribute("href", "#");
     projectAnchor.innerHTML = eval(title);
     document.getElementById("projects-col").appendChild(projectAnchor);
 
+    //Checks if project is already loaded
     document.getElementById(eval(id) + "-project").addEventListener('click', function () {
       if (projectId != this.id.split("-")[0]) {
         projectId = this.id.split("-")[0];
+        destroyBugLists();
         createBugs();
       }
     });
@@ -160,12 +162,40 @@ function createProjectsAnchors(projectsJson) {
   clickFirstAnchor(projects);
 }
 
+
+function destroyBugLists() {
+  $('.bug-card').remove();
+}
+
+
 function clickFirstAnchor(projects) {
-  console.log(projects);
-  projectId = Math.min(projects);
+  projectId = projects[0];
   createBugs();
 }
 
+
+
+//Create new project
+document.getElementById('add-project-form').addEventListener('submit', function () {
+  var projectName = document.getElementById('project-name').value;
+  createProject(projectName);
+  console.log('a');
+  event.preventDefault();
+});
+
+function createProject(projectName) {
+  console.log('a');
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      if (this.responseText == "") {
+        window.location.href = "bugs.php";
+      }
+    }
+  };
+  xhttp.open("POST", "php/submit-project.php?projectName=" + projectName, true);
+  xhttp.send();
+}
 
 
 //INSERT
@@ -249,10 +279,8 @@ function updateBug(id, title, desc) {
 
 //LOGOUT
 document.getElementById('logout-button').addEventListener('click', logout);
-console.log('a');
 
 function logout() {
-  console.log('a');
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
