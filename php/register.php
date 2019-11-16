@@ -8,13 +8,13 @@ $userLastName = filter_var($_REQUEST["lastName"], FILTER_SANITIZE_STRING);
 $userEmail = filter_var($_REQUEST["email"], FILTER_SANITIZE_EMAIL);
 $userPassword = filter_var($_REQUEST["password"], FILTER_SANITIZE_STRING);
 
-//Chama procedure de Log In
+//
 $sql = "CALL SelectUser('$userEmail');";
 $result = mysqli_query($connection, $sql)or die("Error");
 $resultRow = mysqli_fetch_assoc($result);
 
 //Sign In
-//Se usuário existir impede registro
+//
 if($resultRow['nm_email_user'] == $userEmail){ 
   $resultText = "Someone already has this email address. Try another name.";
 }else{

@@ -5,6 +5,7 @@ var projectId = 0;
 //SELECT
 //Loads bugs from DB
 window.addEventListener("load", function () {
+  loadTeams();
   loadProjects();
 });
 
@@ -118,20 +119,62 @@ function createCard(id, title, desc, bugList, bugsJson) {
 
 
 
-
-//Loads project anchors
-function loadProjects() {
+function loadTeams() {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       if (this.responseText == "") { } else {
+
+        var teamsJson = JSON.parse(this.response);
+        createTeamsButtons(teamsJson);
+
+      }
+    }
+  };
+  xhttp.open("POST", "php/select-teams.php", true);
+  xhttp.send();
+}
+
+function createTeamsButtons(teamsJson) {
+  var teams = [];
+  for (var len in teamsJson) {
+    var id = "teamsJson." + len + ".id";
+    var name = "teamsJson." + len + ".name";
+    teams.push(eval(id));
+
+    var teamButton = document.createElement("button");
+    teamButton.setAttribute("class", "btn btn-primary mr-auto");
+    teamButton.setAttribute("id", eval(id) + "-team");
+    teamButton.innerHTML = eval(name);
+    document.getElementById("teams-buttons").appendChild(teamButton);
+
+    document.getElementById(eval(id) + "-team").addEventListener('click', function () {
+      if (projectId != eval(id)) {
+        loadProjects(eval(id));
+      }
+    });
+
+    loadProjects(teams[0]);
+  }
+}
+
+
+
+
+//Loads project anchors
+function loadProjects(teamId) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      if (this.responseText == "") { } else {
+
         var projectsJson = JSON.parse(this.response);
         createProjectsAnchors(projectsJson);
 
       }
     }
   };
-  xhttp.open("POST", "php/select-projects.php", true);
+  xhttp.open("POST", "php/select-projects.php?teamId=" + teamId, true);
   xhttp.send();
 }
 
@@ -167,7 +210,7 @@ function destroyBugLists() {
   $('.bug-card').remove();
 }
 
-
+//Loads first project
 function clickFirstAnchor(projects) {
   projectId = projects[0];
   createBugs();

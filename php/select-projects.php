@@ -4,9 +4,9 @@ session_start();
 //Server connection
 include 'connect.php';
 
-$userId = $_SESSION['userId'];
+$teamId = $_REQUEST['teamId'];
 
-$sql = "CALL SelectProjects($userId);";
+$sql = "CALL SelectProjects($teamId);";
 $result = mysqli_query($connection, $sql)or die("Error");
 
 $i = 0;
@@ -27,3 +27,5 @@ echo '{';
         }
     }
 echo '}';
+
+mysqli_close($connection);

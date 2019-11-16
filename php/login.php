@@ -1,12 +1,12 @@
 <?php
 session_start();
-//Conexão ao servidor
+//Server connection
 include 'connect.php';
 
 $userEmail = filter_var($_REQUEST["name"], FILTER_SANITIZE_EMAIL);
 $userPassword = filter_var($_REQUEST["password"], FILTER_SANITIZE_STRING);
 
-//Chama procedure de Log In
+//Calls
 $sql = "CALL SelectUser('$userEmail');";
 $result = mysqli_query($connection, $sql)or die("Erro");
 $resultRow = mysqli_fetch_assoc($result);

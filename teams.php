@@ -70,13 +70,13 @@ include 'php/get-user-name.php';
 
       <li class="nav-item">
         <a class="nav-link" href="teams.php">
-        <i class="fas fa-users"></i>
+          <i class="fas fa-users"></i>
           <span>Teams</span></a>
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="milestone.php">
+        <a class="nav-link" href="milestones.php">
           <i class="fas fa-map-signs"></i>
           <span>Milestones</span></a>
       </li>

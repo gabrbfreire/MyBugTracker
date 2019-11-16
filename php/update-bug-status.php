@@ -8,3 +8,5 @@ $newStatus = filter_var($_REQUEST["newStatus"], FILTER_SANITIZE_STRING);
 
 $sql = "CALL UpdateBugStatus($bugId, $newStatus);";
 $result = mysqli_query($connection, $sql)or die("Error");
+
+mysqli_close($connection);

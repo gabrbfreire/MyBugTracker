@@ -1,19 +1,11 @@
 <?php
-session_start();
-if (!isset($_SESSION['user'])) {
-  header('Location: index.html');
-  exit();
-}
+  session_start();
+  if (!isset($_SESSION['user'])) {
+    header('Location: index.html');
+    exit();
+  }
 
-include 'php/connect.php';
-$user = $_SESSION['user'];
-
-$sql = "CALL SelectUser('$user');";
-$result = mysqli_query($connection, $sql)or die("Erro");
-$resultRow = mysqli_fetch_assoc($result);
-
-$userName = $resultRow['nm_name_user'] .' '. $resultRow['nm_last_name_user'];
-mysqli_close($connection);
+include 'php/get-user-name.php';
 ?>
 
 <!DOCTYPE html>
@@ -78,7 +70,13 @@ mysqli_close($connection);
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="teams.php">
+        <i class="fas fa-users"></i>
+          <span>Teams</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="milestones.php">
           <i class="fas fa-map-signs"></i>
           <span>Milestones</span></a>
       </li>
@@ -105,13 +103,10 @@ mysqli_close($connection);
           </button>
 
           <!-- Topbar Search -->
-          <button class="btn btn-primary mr-auto" data-toggle="modal" data-target="#projectModal">
-                  New project
-          </button>
+          <div class="mr-auto" id="teams-buttons"></div>
 
           <!-- Topbar Navbar -->
-          <ul class="navbar-nav">
-            
+          <ul class="navbar-nav ml-auto">
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
@@ -157,6 +152,9 @@ mysqli_close($connection);
             <div class="col">
               <button type="button" class="btn border border-primary text-primary float-right m-2 btn-primary-outline" data-toggle="modal" data-target="#newBugModal">
                 Submit Bug
+              </button>
+              <button class="btn btn-primary float-right m-2 btn-primary-outline" data-toggle="modal" data-target="#projectModal">
+                    New project
               </button>
             </div>
           </div>

@@ -5,6 +5,10 @@ include 'connect.php';
 
 $projectId = $_REQUEST['projectId'];
 
+if($projectId == 'undefined' || $projectId == 0){
+    exit();
+}
+
 $sql = "CALL SelectBugs($projectId);";
 $result = mysqli_query($connection, $sql)or die("Error");
 
@@ -28,3 +32,5 @@ echo '{';
         }
     }
 echo '}';
+
+mysqli_close($connection);
