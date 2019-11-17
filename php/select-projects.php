@@ -6,6 +6,10 @@ include 'connect.php';
 
 $teamId = $_REQUEST['teamId'];
 
+if($teamId == 'undefined' || $teamId == 0){
+    exit();
+}
+
 $sql = "CALL SelectProjects($teamId);";
 $result = mysqli_query($connection, $sql)or die("Error");
 

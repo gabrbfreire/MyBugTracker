@@ -142,13 +142,25 @@ include 'php/get-user-name.php';
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col pt-3" id="projects-col">
 
+            </div>
+            <div class="col">
+              <button class="btn btn-primary float-right m-2 btn-primary-outline" data-toggle="modal" data-target="#newTeamModal">
+                New team
+              </button>
+            </div>
+          </div>
+          <div class="row" id="content-teams">
 
-
-
+          
+          </div>
+        </div>
 
         </div>
-        <!-- /.container-fluid -->
+
 
       </div>
       <!-- End of Main Content -->
@@ -184,7 +196,37 @@ include 'php/get-user-name.php';
     </div>
   </div>
 
+  <!-- New Team Modal-->
+  <div class="modal fade" id="newTeamModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New team</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-body">
+          <form action="" id="new-team-form">
+            <div class="form-group">
+              <div id="result"></div>
+              <label for="bug-title">Team name:</label>
+              <input type="text" class="form-control" id="team-name" maxlength="40" required>
+            </div>
+        </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
+
   <script src="js/main.js"></script>
+  <script src="js/teams.js"></script>
   <!-- Bootstrap core JavaScript-->
   <script src="https://kit.fontawesome.com/ff0f4c191d.js" crossorigin="anonymous"></script>
   <script src="vendor/jquery/jquery.min.js"></script>
