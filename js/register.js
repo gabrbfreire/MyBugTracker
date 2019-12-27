@@ -4,7 +4,7 @@ function register(name, lastName, email, password, passwordRepeat) {
     if (this.readyState == 4 && this.status == 200) {
 
       if (this.responseText == "") {
-        window.location.href = 'main.php';
+        window.location.href = 'bugs.php';
       } else {
         document.getElementById("result").innerHTML = this.responseText;
       }

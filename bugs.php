@@ -51,13 +51,6 @@ include 'php/get-user-name.php';
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
 
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item">
-        <a class="nav-link" href="main.php">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
-      </li>
-
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -67,20 +60,6 @@ include 'php/get-user-name.php';
           <i class="fas fa-bug"></i>
           <span>Bugs</span></a>
       </li>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link" href="teams.php">
-        <i class="fas fa-users"></i>
-          <span>Teams</span></a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="milestones.php">
-          <i class="fas fa-map-signs"></i>
-          <span>Milestones</span></a>
-      </li>
-
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
