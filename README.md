@@ -18,3 +18,4 @@ Adicionar exclusão de times
 
 Adicionar exclusão de projetos
 
+![Screenshot](https://user-images.githubusercontent.com/50384743/91780910-4c5ad400-ebcf-11ea-998a-4a2d34a1cde9.png)
