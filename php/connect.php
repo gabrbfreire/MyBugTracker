@@ -1,5 +1,5 @@
 <?php
-$servername = "localhost";
+$servername = ${DB_URL};
 $username = "root";
 $password = "root";
 $dbname = "bug_tracker";
