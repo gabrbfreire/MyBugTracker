@@ -1,5 +1,5 @@
 <?php
-$servername = ${DB_URL};
+$servername = getenv('DB_URL');
 $username = "root";
 $password = "root";
 $dbname = "bug_tracker";
