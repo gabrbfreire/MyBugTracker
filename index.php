@@ -23,7 +23,12 @@
 </head>
 
 <body class="bg-gradient-primary">
-
+<?php 
+echo $servername;
+echo $username;
+echo $username;
+echo $dbname;
+>
   <div class="container">
 
     <!-- Outer Row -->
