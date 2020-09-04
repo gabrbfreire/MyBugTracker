@@ -1,7 +1,7 @@
 <?php
   session_start();
   if (!isset($_SESSION['user'])) {
-    header('Location: index.html');
+    header('Location: index.php');
     exit();
   }
 
@@ -42,7 +42,7 @@ include 'php/get-user-name.php';
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         <div class="sidebar-brand-icon rotate-15">
           <i class="fas fa-bug"></i>
         </div>
