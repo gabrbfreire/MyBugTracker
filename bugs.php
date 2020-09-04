@@ -354,7 +354,7 @@ include 'php/get-user-name.php';
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
-  <script src="js/bugs-projects"></script>
+  <script src="js/bugs-projects.js"></script>
   <script src="js/bugs.js"></script>
   <script src="js/bugs-teams.js"></script>
   <script src="js/teams.js"></script>
