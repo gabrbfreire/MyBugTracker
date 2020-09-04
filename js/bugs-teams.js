@@ -14,6 +14,22 @@ function loadTeams() {
   xhttp.send();
 }
 
+function loadProjects() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      if (this.responseText == "") { } else {
+
+        var projectsJson = JSON.parse(this.response);
+        createProjectsAnchors(projectsJson);
+
+      }
+    }
+  };
+  xhttp.open("POST", "php/select-projects.php?teamId=" + teamId, true);
+  xhttp.send();
+}
+
 function createTeamsButtons(teamsJson) {
   var teams = [];
   for (var len in teamsJson) {
