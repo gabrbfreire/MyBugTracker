@@ -1,6 +1,6 @@
 # MyBugTracker
 
-(https://trello-clone-php.herokuapp.com/ "Projeto no Heroku")
+[Projeto no Heroku](https://trello-clone-php.herokuapp.com/)
 
 Tecnologias utilizadas HTML, CSS, JavaScript, Bootstrap, Jquery, PHP e MySQL.
 
