@@ -9,5 +9,5 @@ echo $username;
 echo $username;
 echo $dbname;
 
-$connection = mysqli_connect($servername, $username, $password, $dbname)or die($servername);
+$connection = mysqli_connect($servername, $username, $password, $dbname)or die('Error');
 mysqli_set_charset($connection, 'utf8');
