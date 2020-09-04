@@ -30,7 +30,6 @@ function createTeamsButtons(teamsJson) {
     document.getElementById(eval(id) + "-team").addEventListener('click', function () {
       if (teamId != this.id.split("-")[0]) {
         teamId = this.id.split("-")[0];
-        console.log(teamId);
         loadProjects();
       }
     });
